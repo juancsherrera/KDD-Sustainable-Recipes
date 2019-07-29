@@ -7,25 +7,30 @@ July, 2019
 
 ![alt text](https://github.com/juancsherrera/TDISupplychain/blob/master/README_figs/usaodsupplychain.gif)
 
-Title: Sustainable Cooking: Source Local and Organic
+**Title: Sustainable Cooking: Source Local and Organic**
 
-Motivation and description of the problem: A growing trend towards organic and sustainable consumption has sparked new players in the food industry: from restaurants such as Sweetgreen to organic dairy and other products that consumers have at their disposal. A growing concern in this move towards sustainability is how much does food travel in order to get to the table. The project that I am proposing tackles this challenge: how can we create food recipes for consumers, restaurants, and the industry in order to minimize the miles that food  organic food will have to travel in order to get to the consumer's table.
+**Motivation and description of the problem**: A growing trend towards organic and sustainable consumption has sparked new players in the food industry: from restaurants such as Sweetgreen to organic dairy and other products that consumers have at their disposal. A growing concern in this move towards sustainability is how much does food travel in order to get to the table. The project that I am proposing tackles this challenge: how can we create food recipes for consumers, restaurants, and the industry in order to minimize the miles that food  organic food will have to travel in order to get to the consumer's table.
 
 
 In order to tackle this challenge I will use a dataset of certified organic products along with a datset of food recipes in which one can either choose a recipe and then find the organic producers that could produce that recipe OR one can create a recipe by using existing organic production facilities minimizing the distance from the consumer to the producers.
 
-Data: The main datasets are: 
+**Data**: The main datasets are: 
 
 1. The United States Department of Agriculture Organic Integrity Database that contains information for every organic product certified by the USDA. This dataset contains an address for each operation (handler and farmer) but not a GPS coordinate. I used the google maps API to retrieve the GPS coordinates. 
 
 2. A large dataset ocontaining 56,498 food recipes originally scraped from allrecipes.com by a group of authors.
 
-Methods: I use network science methodologies to infer dynamic supply chains that connect farmers -&gt; handlers -&gt; to potential consumers. These supply chains are inferred based on modeling connections between the GPS coordinates. The methods are a variation of the travel salesman problem in which 
+**Methods:** I use network science methodologies to infer dynamic supply chains that connect farmers -&gt; handlers -&gt; to potential consumers. These supply chains are inferred based on modeling connections between the GPS coordinates. The methods are a variation of the travel salesman problem in which the locations of the farms that can produce the ingredients given a recipe are bounded by the ingredients on the recipe.
 
-Conclusions: I here demonstarte that this method is able to 
+**Conclusions**: This method can reliably provide a set of farms that can produce the required ingredients for producing a recipe by minimizing the travel distance. A further development could approach the problem from another point of view: given the local products (by choosing a certain radius), select some recipes that could be feasibly produced.
 
-Shortcomings: The main shortcomings of this project are: (1) I do not have data on the size of the operation of the organic products. hence, in order to make this feasible for a company to actually source the products minimizing the distances I will have to colect data on their potential output. If the potential output does not meet the client's demands then the node could be reclassified and the minimization recalculated. (2) The distances have been computed as euclidean distances. This may be problematic in a real world application, however this has been done for efficiency and due to lack of credits on the google API. This is an easily solvable problem given some investment money to compute the actual travel distances, nevertheless euclidean distances provide a good approach.
+**Shortcomings**
 
+1. Operation Size Data: I do not have data on the size of the operation of the organic products. hence, in order to make this feasible for a company to actually source the products minimizing the distances I will have to colect data on their potential output. If the potential output does not meet the client's demands then the node could be reclassified and the minimization recalculated. 
+
+2. Euclidean distances: The distances have been computed as euclidean distances. This may be problematic in a real world application, however this has been done for efficiency and due to lack of credits on the google API. This is an easily solvable problem given some investment money to compute the actual travel distances, nevertheless euclidean distances provide a good approach.
+
+3. Seasonality: The dataset on organic food does not contain informtaion on seasonality of the produce. Hence if the analysis is run for example in winter, it is highly likely that some of the prodycts will not be provided by the farm.
 
 Analysis
 --------
