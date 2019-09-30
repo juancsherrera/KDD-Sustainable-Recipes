@@ -1,219 +1,358 @@
----
-title: "xxxxxxxxxx.md"
-author: "Juan C. S. Herrera, Carolyn Dimitri"
-date: "September, 2019"
-output: 
-  html_document:
-    keep_md: true
-    self_contained: true
----
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Farm2Recipe, Connecting Food Recipes to Local and Organic Products. A Network Science approach.},
+            pdfauthor={Juan C. S. Herrera, Carolyn Dimitri},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Farm2Recipe, Connecting Food Recipes to Local and Organic Products. A
+Network Science approach.}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Juan C. S. Herrera, Carolyn Dimitri}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{2019-09-29}
 
 
+\begin{document}
+\maketitle
 
-## Load Libraries
+\subsection{Load Libraries}\label{load-libraries}
 
-```r
-  library(RJSONIO)
-  library(ggplot2)
-  library(cowplot)
-  library(GGally)
-  library(RCurl)
-  library(magick)
-  library(readxl)
-  library(RMySQL)
-  library(reshape)
-  library(network)
-  library(statnet)
-  library(gganimate)
-  library(ggthemes)
-  library(beepr)
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(RJSONIO)}
+  \KeywordTok{library}\NormalTok{(ggplot2)}
+  \KeywordTok{library}\NormalTok{(cowplot)}
+  \KeywordTok{library}\NormalTok{(GGally)}
+  \KeywordTok{library}\NormalTok{(RCurl)}
+  \KeywordTok{library}\NormalTok{(magick)}
+  \KeywordTok{library}\NormalTok{(readxl)}
+  \KeywordTok{library}\NormalTok{(RMySQL)}
+  \KeywordTok{library}\NormalTok{(reshape)}
+  \KeywordTok{library}\NormalTok{(network)}
+  \KeywordTok{library}\NormalTok{(statnet)}
+  \KeywordTok{library}\NormalTok{(gganimate)}
+  \KeywordTok{library}\NormalTok{(ggthemes)}
+  \KeywordTok{library}\NormalTok{(beepr)}
 
-  set.seed(8888)
-```
+  \KeywordTok{set.seed}\NormalTok{(}\DecValTok{8888}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-## Load and prepare data
-## 1A. Organic producers (Integrity Database. USDA)
- This code loads and cleans the data. 
- Subsequequently it searches for the latitude and longitude using the google maps API
- This will only work with your own google maps KEY. Make sure to use that one. Else you can skip this step and load the data which contains the latitude and longitude. Next step.
- 
+\subsection{Load and prepare data}\label{load-and-prepare-data}
 
-```r
-#Get GPS coordinates for every organic operaration in the US
-#1. Import operation level
-opall <- as.data.frame(read.csv(paste0(directx,"op.csv"),stringsAsFactors = FALSE))
-#2. Import item level
-itall <- as.data.frame(read.csv(paste0(directx,"it.csv"),stringsAsFactors = FALSE))
-getwd()
-dim(opall)
-dim(itall)
+\subsection{1A. Organic producers (Integrity Database.
+USDA)}\label{a.-organic-producers-integrity-database.-usda}
 
-#3: Merge Operation and item levels
-lsallall<-merge(opall, itall, by.x="op_nopOpID", by.y="ci_nopOpID", all.y = TRUE)
+This code loads and cleans the data. Subsequequently it searches for the
+latitude and longitude using the google maps API This will only work
+with your own google maps KEY. Make sure to use that one. Else you can
+skip this step and load the data which contains the latitude and
+longitude. Next step.
 
-#send to SQL
-conn <- dbConnect(RSQLite::SQLite(), dbname="organics.sqlite")
-dbWriteTable(conn, value = lsallall, name = "allorganicoperations", overwrite = FALSE) 
-alloperations<-dbGetQuery(conn, "
-                      SELECT A. *
-                      FROM allorganicoperations A
-                      WHERE TRIM(A.opPA_country) IN ('United States of America (the)')
-                      ")
-dbWriteTable(conn, value = alloperations, name = "USAorganicoperations", overwrite = FALSE)
-geocodeAdddress<- function(address) {
-  require(RJSONIO)
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Get GPS coordinates for every organic operaration in the US}
+\CommentTok{#1. Import operation level}
+\NormalTok{opall <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(}\KeywordTok{read.csv}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(directx,}\StringTok{"op.csv"}\NormalTok{),}\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{))}
+\CommentTok{#2. Import item level}
+\NormalTok{itall <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(}\KeywordTok{read.csv}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(directx,}\StringTok{"it.csv"}\NormalTok{),}\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{))}
+\KeywordTok{getwd}\NormalTok{()}
+\KeywordTok{dim}\NormalTok{(opall)}
+\KeywordTok{dim}\NormalTok{(itall)}
+
+\CommentTok{#3: Merge Operation and item levels}
+\NormalTok{lsallall<-}\KeywordTok{merge}\NormalTok{(opall, itall, }\DataTypeTok{by.x=}\StringTok{"op_nopOpID"}\NormalTok{, }\DataTypeTok{by.y=}\StringTok{"ci_nopOpID"}\NormalTok{, }\DataTypeTok{all.y =} \OtherTok{TRUE}\NormalTok{)}
+
+\CommentTok{#send to SQL}
+\NormalTok{conn <-}\StringTok{ }\KeywordTok{dbConnect}\NormalTok{(RSQLite}\OperatorTok{::}\KeywordTok{SQLite}\NormalTok{(), }\DataTypeTok{dbname=}\StringTok{"organics.sqlite"}\NormalTok{)}
+\KeywordTok{dbWriteTable}\NormalTok{(conn, }\DataTypeTok{value =}\NormalTok{ lsallall, }\DataTypeTok{name =} \StringTok{"allorganicoperations"}\NormalTok{, }\DataTypeTok{overwrite =} \OtherTok{FALSE}\NormalTok{) }
+\NormalTok{alloperations<-}\KeywordTok{dbGetQuery}\NormalTok{(conn, }\StringTok{"}
+\StringTok{                      SELECT A. *}
+\StringTok{                      FROM allorganicoperations A}
+\StringTok{                      WHERE TRIM(A.opPA_country) IN ('United States of America (the)')}
+\StringTok{                      "}\NormalTok{)}
+\KeywordTok{dbWriteTable}\NormalTok{(conn, }\DataTypeTok{value =}\NormalTok{ alloperations, }\DataTypeTok{name =} \StringTok{"USAorganicoperations"}\NormalTok{, }\DataTypeTok{overwrite =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{geocodeAdddress<-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(address) \{}
+  \KeywordTok{require}\NormalTok{(RJSONIO)}
 
   
-  url <- URLencode(paste0(url, address,keystuff, sep = ""))
-  x <- fromJSON(url, simplify = FALSE)
-  if (x$status == "OK") {
-    out <- c(x$results[[1]]$geometry$location$lng,
-             x$results[[1]]$geometry$location$lat)
-  } else {
-    out <- matrix(nrow=2,ncol=1)
-  }  out-
-}
+\NormalTok{  url <-}\StringTok{ }\KeywordTok{URLencode}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(url, address,keystuff, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{))}
+\NormalTok{  x <-}\StringTok{ }\KeywordTok{fromJSON}\NormalTok{(url, }\DataTypeTok{simplify =} \OtherTok{FALSE}\NormalTok{)}
+  \ControlFlowTok{if}\NormalTok{ (x}\OperatorTok{$}\NormalTok{status }\OperatorTok{==}\StringTok{ "OK"}\NormalTok{) \{}
+\NormalTok{    out <-}\StringTok{ }\KeywordTok{c}\NormalTok{(x}\OperatorTok{$}\NormalTok{results[[}\DecValTok{1}\NormalTok{]]}\OperatorTok{$}\NormalTok{geometry}\OperatorTok{$}\NormalTok{location}\OperatorTok{$}\NormalTok{lng,}
+\NormalTok{             x}\OperatorTok{$}\NormalTok{results[[}\DecValTok{1}\NormalTok{]]}\OperatorTok{$}\NormalTok{geometry}\OperatorTok{$}\NormalTok{location}\OperatorTok{$}\NormalTok{lat)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{    out <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{nrow=}\DecValTok{2}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{  \}  out}\OperatorTok{-}
+\NormalTok{\}}
 
 
-#Create vector with all the address values
-alloperations$opadresscom <- paste(alloperations$opPA_line1 , alloperations$opPA_line2 , alloperations$opPA_city , alloperations$opPA_state , alloperations$opPA_country , alloperations$opPA_zip, sep=" ")
-#clean
-alloperations$opadfinal<-gsub("[^0-9\\.\\^A-Z\\^a-z\\ ]", "", alloperations$opadresscom)
-#Use function, get latitude and longitude from google maps
-#You will need to re run this several times, excluding those for which you were able to get coordinates. Again, it is important to register for the google maps API so you don't run over the limit og queries. 
-#head(alloperations)
-#dim(alloperations)
+\CommentTok{#Create vector with all the address values}
+\NormalTok{alloperations}\OperatorTok{$}\NormalTok{opadresscom <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(alloperations}\OperatorTok{$}\NormalTok{opPA_line1 , alloperations}\OperatorTok{$}\NormalTok{opPA_line2 , alloperations}\OperatorTok{$}\NormalTok{opPA_city , alloperations}\OperatorTok{$}\NormalTok{opPA_state , alloperations}\OperatorTok{$}\NormalTok{opPA_country , alloperations}\OperatorTok{$}\NormalTok{opPA_zip, }\DataTypeTok{sep=}\StringTok{" "}\NormalTok{)}
+\CommentTok{#clean}
+\NormalTok{alloperations}\OperatorTok{$}\NormalTok{opadfinal<-}\KeywordTok{gsub}\NormalTok{(}\StringTok{"[^0-9}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{.}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{^A-Z}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{^a-z}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{ ]"}\NormalTok{, }\StringTok{""}\NormalTok{, alloperations}\OperatorTok{$}\NormalTok{opadresscom)}
+\CommentTok{#Use function, get latitude and longitude from google maps}
+\CommentTok{#You will need to re run this several times, excluding those for which you were able to get coordinates. Again, it is important to register for the google maps API so you don't run over the limit og queries. }
+\CommentTok{#head(alloperations)}
+\CommentTok{#dim(alloperations)}
 
-alloperations<-read.csv("/Users/juan/Dropbox/ACADEMICO/NYU PHD/Y2/Independent Study/Organic/food_journal/alloperations.csv")
-geovector<-as.data.frame(alloperations$opadfinal)
-#dim(geovector)
-geovector<-unique(geovector)
-#dim(geovector)
+\NormalTok{alloperations<-}\KeywordTok{read.csv}\NormalTok{(}\StringTok{"/Users/juan/Dropbox/ACADEMICO/NYU PHD/Y2/Independent Study/Organic/food_journal/alloperations.csv"}\NormalTok{)}
+\NormalTok{geovector<-}\KeywordTok{as.data.frame}\NormalTok{(alloperations}\OperatorTok{$}\NormalTok{opadfinal)}
+\CommentTok{#dim(geovector)}
+\NormalTok{geovector<-}\KeywordTok{unique}\NormalTok{(geovector)}
+\CommentTok{#dim(geovector)}
 
-#dim(alloperations)
+\CommentTok{#dim(alloperations)}
 
-preurl <- "https://maps.googleapis.com/maps/api/geocode/json?address="
-###### WARNING: USE YOUR OWN GOOGLE MAPS API KEY HERE:
-keystuff <- "YOUR GOOGLE MAPS API KEY HERE"
+\NormalTok{preurl <-}\StringTok{ "https://maps.googleapis.com/maps/api/geocode/json?address="}
+\NormalTok{###### }\AlertTok{WARNING}\NormalTok{: USE YOUR OWN GOOGLE MAPS API KEY HERE:}
+\NormalTok{keystuff <-}\StringTok{ "YOUR GOOGLE MAPS API KEY HERE"}
 
-geovector$lat<--999
-geovector$lon<--999
-head(geovector)
-dim(geovector)
-for(i in 10001:15629)
-{
-  url<-URLencode(paste0(preurl, as.character(geovector[i,1]),keystuff, sep = ""))
-  x <- fromJSON(url, simplify = FALSE)
+\NormalTok{geovector}\OperatorTok{$}\NormalTok{lat<-}\OperatorTok{-}\DecValTok{999}
+\NormalTok{geovector}\OperatorTok{$}\NormalTok{lon<-}\OperatorTok{-}\DecValTok{999}
+\KeywordTok{head}\NormalTok{(geovector)}
+\KeywordTok{dim}\NormalTok{(geovector)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{10001}\OperatorTok{:}\DecValTok{15629}\NormalTok{)}
+\NormalTok{\{}
+\NormalTok{  url<-}\KeywordTok{URLencode}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(preurl, }\KeywordTok{as.character}\NormalTok{(geovector[i,}\DecValTok{1}\NormalTok{]),keystuff, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{))}
+\NormalTok{  x <-}\StringTok{ }\KeywordTok{fromJSON}\NormalTok{(url, }\DataTypeTok{simplify =} \OtherTok{FALSE}\NormalTok{)}
 
-  if (x$status == "OK") {
-    geovector[i,2]<-as.numeric(x$results[[1]]$geometry$location$lat)
-    geovector[i,3]<-as.numeric(x$results[[1]]$geometry$location$lng)
-  } else {
-    geovector[i,2]<--888
-    geovector[i,3]<--888
-  } 
-}
-
-
-#write.csv(geovector,"geovector.csv")
-#isitgoodornot <- read.csv("geovector.csv") 
-
-xx<-URLencode(paste0(url, as.character(geovector[i,1]),keystuff, sep = ""))
-
-for(i in 1:1)
-{
-  lxxx <- paste(t(paste0(print(geocodeAdddress(geovector[i,1])))),sep="xxx")
-  lxxx<-as.data.frame(t(lxxx))
-  lxxx[1,3]<-paste(lxxx[1,1],lxxx[1,2],sep="xxx")
-  lxxx
-  geovector[i,2] <- (lxxx[1,3])
-}
-#head(geovector)
-write.csv(alloperations, "alloperations.csv")
-```
-
-## 1B. Organic producers (Integrity Database. USDA)
-This code loads and merges the geocoded data.At the end of this code you will get the final dataset of organic production in the USA
+  \ControlFlowTok{if}\NormalTok{ (x}\OperatorTok{$}\NormalTok{status }\OperatorTok{==}\StringTok{ "OK"}\NormalTok{) \{}
+\NormalTok{    geovector[i,}\DecValTok{2}\NormalTok{]<-}\KeywordTok{as.numeric}\NormalTok{(x}\OperatorTok{$}\NormalTok{results[[}\DecValTok{1}\NormalTok{]]}\OperatorTok{$}\NormalTok{geometry}\OperatorTok{$}\NormalTok{location}\OperatorTok{$}\NormalTok{lat)}
+\NormalTok{    geovector[i,}\DecValTok{3}\NormalTok{]<-}\KeywordTok{as.numeric}\NormalTok{(x}\OperatorTok{$}\NormalTok{results[[}\DecValTok{1}\NormalTok{]]}\OperatorTok{$}\NormalTok{geometry}\OperatorTok{$}\NormalTok{location}\OperatorTok{$}\NormalTok{lng)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{    geovector[i,}\DecValTok{2}\NormalTok{]<-}\OperatorTok{-}\DecValTok{888}
+\NormalTok{    geovector[i,}\DecValTok{3}\NormalTok{]<-}\OperatorTok{-}\DecValTok{888}
+\NormalTok{  \} }
+\NormalTok{\}}
 
 
-```r
-#load geocoded data
-geovector <- read.csv("/Users/juan/Documents/GitHub/SustainableCooking-Source_Local_and_Organic/geovector.csv", stringsAsFactors = FALSE)
-#head(geovector)
+\CommentTok{#write.csv(geovector,"geovector.csv")}
+\CommentTok{#isitgoodornot <- read.csv("geovector.csv") }
 
-#load merged USDA'a integrity database dataset
-data <- read.csv("/Users/juan/Documents/GitHub/SustainableCooking-Source_Local_and_Organic/alloperations.csv")
-#head(data)
-#dim(data)
+\NormalTok{xx<-}\KeywordTok{URLencode}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(url, }\KeywordTok{as.character}\NormalTok{(geovector[i,}\DecValTok{1}\NormalTok{]),keystuff, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{))}
 
-#merge
-production_data<-merge(data, geovector, by.x="opadfinal", by.y="alloperations.opadfinal", all.x = TRUE)
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1}\NormalTok{)}
+\NormalTok{\{}
+\NormalTok{  lxxx <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\KeywordTok{t}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\KeywordTok{print}\NormalTok{(}\KeywordTok{geocodeAdddress}\NormalTok{(geovector[i,}\DecValTok{1}\NormalTok{])))),}\DataTypeTok{sep=}\StringTok{"xxx"}\NormalTok{)}
+\NormalTok{  lxxx<-}\KeywordTok{as.data.frame}\NormalTok{(}\KeywordTok{t}\NormalTok{(lxxx))}
+\NormalTok{  lxxx[}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{]<-}\KeywordTok{paste}\NormalTok{(lxxx[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{],lxxx[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{],}\DataTypeTok{sep=}\StringTok{"xxx"}\NormalTok{)}
+\NormalTok{  lxxx}
+\NormalTok{  geovector[i,}\DecValTok{2}\NormalTok{] <-}\StringTok{ }\NormalTok{(lxxx[}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{])}
+\NormalTok{\}}
+\CommentTok{#head(geovector)}
+\KeywordTok{write.csv}\NormalTok{(alloperations, }\StringTok{"alloperations.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-#subset
-production_data <- subset(production_data, select = c(opadfinal, ci_nopCategory, ci_nopCatName, ci_itemList, lat, lon))
+\subsection{1B. Organic producers (Integrity Database.
+USDA)}\label{b.-organic-producers-integrity-database.-usda}
 
-#check merge accuracy
-#dim(geovector)
-#dim(data)
-#head(production_data)
-#dim(production_data)
-#table(is.na(production_data$lat))
-```
+This code loads and merges the geocoded data.At the end of this code you
+will get the final dataset of organic production in the USA
 
-## 2B Load Recipe Dataset from The Flavor Network. 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#load geocoded data}
+\NormalTok{geovector <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"/Users/juan/Documents/GitHub/SustainableCooking-Source_Local_and_Organic/geovector.csv"}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\CommentTok{#head(geovector)}
 
-```r
-recipes <- read.csv("/Users/juan/Documents/GitHub/SustainableCooking-Source_Local_and_Organic/allr_recipes.csv", stringsAsFactors = FALSE)
-#dim(recipes)
-#table(recipes$region)
-#subset so only American recipes remain in the dataset
-recipes <- subset(recipes, region == "American")
-#dim(recipes)
-```
+\CommentTok{#load merged USDA'a integrity database dataset}
+\NormalTok{data <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"/Users/juan/Documents/GitHub/SustainableCooking-Source_Local_and_Organic/alloperations.csv"}\NormalTok{)}
+\CommentTok{#head(data)}
+\CommentTok{#dim(data)}
 
+\CommentTok{#merge}
+\NormalTok{production_data<-}\KeywordTok{merge}\NormalTok{(data, geovector, }\DataTypeTok{by.x=}\StringTok{"opadfinal"}\NormalTok{, }\DataTypeTok{by.y=}\StringTok{"alloperations.opadfinal"}\NormalTok{, }\DataTypeTok{all.x =} \OtherTok{TRUE}\NormalTok{)}
 
-##2C Load Whole Foods Supermarket Locations
+\CommentTok{#subset}
+\NormalTok{production_data <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(production_data, }\DataTypeTok{select =} \KeywordTok{c}\NormalTok{(opadfinal, ci_nopCategory, ci_nopCatName, ci_itemList, lat, lon))}
 
-```r
-#See here for how to obtain this dataset: https://github.com/juancsherrera/wholefoods
-whole_foods <- read.csv("/Users/juan/Documents/GitHub/SustainableCooking-Source_Local_and_Organic/wf_geo_public.csv", stringsAsFactors = FALSE)
-#head(whole_foods)
-```
+\CommentTok{#check merge accuracy}
+\CommentTok{#dim(geovector)}
+\CommentTok{#dim(data)}
+\CommentTok{#head(production_data)}
+\CommentTok{#dim(production_data)}
+\CommentTok{#table(is.na(production_data$lat))}
+\end{Highlighting}
+\end{Shaded}
 
-##Map Producers and Whole Foods (random coordinates)
+\subsection{2B Load Recipe Dataset from The Flavor
+Network.}\label{b-load-recipe-dataset-from-the-flavor-network.}
 
-```r
-#Load base map
-usa <- map_data("state")
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{recipes <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"/Users/juan/Documents/GitHub/SustainableCooking-Source_Local_and_Organic/allr_recipes.csv"}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\CommentTok{#dim(recipes)}
+\CommentTok{#table(recipes$region)}
+\CommentTok{#subset so only American recipes remain in the dataset}
+\NormalTok{recipes <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(recipes, region }\OperatorTok{==}\StringTok{ "American"}\NormalTok{)}
+\CommentTok{#dim(recipes)}
+\end{Highlighting}
+\end{Shaded}
 
-#1. ORGANIC PRODUCERS
-#Prune so ONLY the 48 CONTIGUOUS US STATES REMAIN
-fig1tot<-production_data[production_data$lat>20,]
-fig1tot<-fig1tot[fig1tot$lat<55,]
-fig1tot<-fig1tot[fig1tot$lon>-125,]
-fig1tot<-fig1tot[fig1tot$lon< 1*(-50),]
-#CREATE NEW DATSET WITH ONLY 48 CONTIGUOUS US STATES
-production_data_48 <- fig1tot
-#create vector of products in the USDA OID
-production_data_48$productvector<-(paste(                
-  tolower(gsub("[^[:alnum:]]","", production_data_48$ci_nopCategory)),
-  tolower(gsub("[^[:alnum:]]","", production_data_48$ci_nopCatName)),
-  tolower(gsub("[^[:alnum:]]","", production_data_48$ci_itemList))
-))
+\subsection{2C Load Whole Foods Supermarket
+Locations}\label{c-load-whole-foods-supermarket-locations}
 
-#2. WHOLE FOOD SUPERMAKETS
-#prune so only contiguos US states appear
-whole_foods_48<-whole_foods[whole_foods$lat>20,]
-whole_foods_48<-whole_foods_48[whole_foods_48$lat<55,]
-whole_foods_48<-whole_foods_48[whole_foods_48$lon>-125,]
-whole_foods_48<-whole_foods_48[whole_foods_48$lon< 1*(-50),]
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#See here for how to obtain this dataset: https://github.com/juancsherrera/wholefoods}
+\NormalTok{whole_foods <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"/Users/juan/Documents/GitHub/SustainableCooking-Source_Local_and_Organic/wf_geo_public.csv"}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\CommentTok{#head(whole_foods)}
+\end{Highlighting}
+\end{Shaded}
 
-#MAPPING HERE!
-#Large size
-theme_base(base_size = 3000)
-```
+\subsection{Map Producers and Whole Foods (random
+coordinates)}\label{map-producers-and-whole-foods-random-coordinates}
 
-```
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Load base map}
+\NormalTok{usa <-}\StringTok{ }\KeywordTok{map_data}\NormalTok{(}\StringTok{"state"}\NormalTok{)}
+
+\CommentTok{#1. ORGANIC PRODUCERS}
+\CommentTok{#Prune so ONLY the 48 CONTIGUOUS US STATES REMAIN}
+\NormalTok{fig1tot<-production_data[production_data}\OperatorTok{$}\NormalTok{lat}\OperatorTok{>}\DecValTok{20}\NormalTok{,]}
+\NormalTok{fig1tot<-fig1tot[fig1tot}\OperatorTok{$}\NormalTok{lat}\OperatorTok{<}\DecValTok{55}\NormalTok{,]}
+\NormalTok{fig1tot<-fig1tot[fig1tot}\OperatorTok{$}\NormalTok{lon}\OperatorTok{>-}\DecValTok{125}\NormalTok{,]}
+\NormalTok{fig1tot<-fig1tot[fig1tot}\OperatorTok{$}\NormalTok{lon}\OperatorTok{<}\StringTok{ }\DecValTok{1}\OperatorTok{*}\NormalTok{(}\OperatorTok{-}\DecValTok{50}\NormalTok{),]}
+\CommentTok{#CREATE NEW DATSET WITH ONLY 48 CONTIGUOUS US STATES}
+\NormalTok{production_data_}\DecValTok{48}\NormalTok{ <-}\StringTok{ }\NormalTok{fig1tot}
+\CommentTok{#create vector of products in the USDA OID}
+\NormalTok{production_data_}\DecValTok{48}\OperatorTok{$}\NormalTok{productvector<-(}\KeywordTok{paste}\NormalTok{(                }
+  \KeywordTok{tolower}\NormalTok{(}\KeywordTok{gsub}\NormalTok{(}\StringTok{"[^[:alnum:]]"}\NormalTok{,}\StringTok{""}\NormalTok{, production_data_}\DecValTok{48}\OperatorTok{$}\NormalTok{ci_nopCategory)),}
+  \KeywordTok{tolower}\NormalTok{(}\KeywordTok{gsub}\NormalTok{(}\StringTok{"[^[:alnum:]]"}\NormalTok{,}\StringTok{""}\NormalTok{, production_data_}\DecValTok{48}\OperatorTok{$}\NormalTok{ci_nopCatName)),}
+  \KeywordTok{tolower}\NormalTok{(}\KeywordTok{gsub}\NormalTok{(}\StringTok{"[^[:alnum:]]"}\NormalTok{,}\StringTok{""}\NormalTok{, production_data_}\DecValTok{48}\OperatorTok{$}\NormalTok{ci_itemList))}
+\NormalTok{))}
+
+\CommentTok{#2. WHOLE FOOD SUPERMAKETS}
+\CommentTok{#prune so only contiguos US states appear}
+\NormalTok{whole_foods_}\DecValTok{48}\NormalTok{<-whole_foods[whole_foods}\OperatorTok{$}\NormalTok{lat}\OperatorTok{>}\DecValTok{20}\NormalTok{,]}
+\NormalTok{whole_foods_}\DecValTok{48}\NormalTok{<-whole_foods_}\DecValTok{48}\NormalTok{[whole_foods_}\DecValTok{48}\OperatorTok{$}\NormalTok{lat}\OperatorTok{<}\DecValTok{55}\NormalTok{,]}
+\NormalTok{whole_foods_}\DecValTok{48}\NormalTok{<-whole_foods_}\DecValTok{48}\NormalTok{[whole_foods_}\DecValTok{48}\OperatorTok{$}\NormalTok{lon}\OperatorTok{>-}\DecValTok{125}\NormalTok{,]}
+\NormalTok{whole_foods_}\DecValTok{48}\NormalTok{<-whole_foods_}\DecValTok{48}\NormalTok{[whole_foods_}\DecValTok{48}\OperatorTok{$}\NormalTok{lon}\OperatorTok{<}\StringTok{ }\DecValTok{1}\OperatorTok{*}\NormalTok{(}\OperatorTok{-}\DecValTok{50}\NormalTok{),]}
+
+\CommentTok{#MAPPING HERE!}
+\CommentTok{#Large size}
+\KeywordTok{theme_base}\NormalTok{(}\DataTypeTok{base_size =} \DecValTok{3000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
 ## List of 60
 ##  $ line                 :List of 6
 ##   ..$ colour       : chr "black"
@@ -618,106 +757,114 @@ theme_base(base_size = 3000)
 ##  - attr(*, "class")= chr [1:2] "theme" "gg"
 ##  - attr(*, "complete")= logi TRUE
 ##  - attr(*, "validate")= logi TRUE
-```
+\end{verbatim}
 
-```r
-#draw the USA map with state lines
-fig1fig <- ggplot() + geom_polygon(data = usa, aes(x=long, y = lat, group = group), fill = "white", color = "#9fa9a3") + coord_fixed(1.3) 
-#add organic producer nodes
-fig1fig <- fig1fig + geom_point(data = fig1tot, aes(x = lon, y = lat), size = 0.0005) 
-#add Whole food supermarkets in another color
-fig1fig <- fig1fig + geom_point(data = whole_foods_48, aes(x = lon, y = lat), size = 0.5, color = "green") #add nodes
-fig1fig <- fig1fig + theme_map()
-fig1fig
-```
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#draw the USA map with state lines}
+\NormalTok{fig1fig <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ usa, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{long, }\DataTypeTok{y =}\NormalTok{ lat, }\DataTypeTok{group =}\NormalTok{ group), }\DataTypeTok{fill =} \StringTok{"white"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"#9fa9a3"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{coord_fixed}\NormalTok{(}\FloatTok{1.3}\NormalTok{) }
+\CommentTok{#add organic producer nodes}
+\NormalTok{fig1fig <-}\StringTok{ }\NormalTok{fig1fig }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ fig1tot, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lon, }\DataTypeTok{y =}\NormalTok{ lat), }\DataTypeTok{size =} \FloatTok{0.0005}\NormalTok{) }
+\CommentTok{#add Whole food supermarkets in another color}
+\NormalTok{fig1fig <-}\StringTok{ }\NormalTok{fig1fig }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ whole_foods_}\DecValTok{48}\NormalTok{, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lon, }\DataTypeTok{y =}\NormalTok{ lat), }\DataTypeTok{size =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{color =} \StringTok{"green"}\NormalTok{) }\CommentTok{#add nodes}
+\NormalTok{fig1fig <-}\StringTok{ }\NormalTok{fig1fig }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_map}\NormalTok{()}
+\NormalTok{fig1fig}
+\end{Highlighting}
+\end{Shaded}
 
-![](Farm2Recipe_files/figure-html/mapping_producers_and_WholeFoods-1.png)<!-- -->
+\includegraphics{Farm2Recipe_files/figure-latex/mapping_producers_and_WholeFoods-1.pdf}
 
-```r
-ggsave("/Users/juan/Documents/GitHub/SustainableCooking-Source_Local_and_Organic/production_data_USA.eps")
-ggsave("/Users/juan/Documents/GitHub/SustainableCooking-Source_Local_and_Organic/production_data_USA.jpg")
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"/Users/juan/Documents/GitHub/SustainableCooking-Source_Local_and_Organic/production_data_USA.eps"}\NormalTok{)}
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"/Users/juan/Documents/GitHub/SustainableCooking-Source_Local_and_Organic/production_data_USA.jpg"}\NormalTok{)}
 
-c(paste0("Organic Production in the USA.Number of Producers: ",as.character(as.matrix(dim(as.data.frame(unique(fig1tot$opadfinal))))[1,1])))
-```
+\KeywordTok{c}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"Organic Production in the USA.Number of Producers: "}\NormalTok{,}\KeywordTok{as.character}\NormalTok{(}\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{dim}\NormalTok{(}\KeywordTok{as.data.frame}\NormalTok{(}\KeywordTok{unique}\NormalTok{(fig1tot}\OperatorTok{$}\NormalTok{opadfinal))))[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{])))}
+\end{Highlighting}
+\end{Shaded}
 
-```
+\begin{verbatim}
 ## [1] "Organic Production in the USA.Number of Producers: 15490"
-```
+\end{verbatim}
 
+\subsection{Problem 1: Find recipe ingredients given a GPS coordinate
+and a
+recipe}\label{problem-1-find-recipe-ingredients-given-a-gps-coordinate-and-a-recipe}
 
-##Problem 1: Find recipe ingredients given a GPS coordinate and a recipe
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 1. select random recipe row from recipe dataset}
+\NormalTok{random_recipe <-}\StringTok{ }\NormalTok{recipes[}\KeywordTok{sample}\NormalTok{(}\KeywordTok{nrow}\NormalTok{(recipes), }\DecValTok{1}\NormalTok{), ]}
+\CommentTok{#random_recipe}
 
-```r
-# 1. select random recipe row from recipe dataset
-random_recipe <- recipes[sample(nrow(recipes), 1), ]
-#random_recipe
+\CommentTok{# 1. select random GPS coordinate. We are using a dataset of Whole Foods locations}
+\NormalTok{random_wf<-}\StringTok{ }\NormalTok{whole_foods[}\KeywordTok{sample}\NormalTok{(}\KeywordTok{nrow}\NormalTok{(whole_foods), }\DecValTok{1}\NormalTok{), ]}
+\CommentTok{#random_wf}
 
-# 1. select random GPS coordinate. We are using a dataset of Whole Foods locations
-random_wf<- whole_foods[sample(nrow(whole_foods), 1), ]
-#random_wf
+\CommentTok{#Create Functions for calculating Haversine distances}
+\CommentTok{# Calculates the geodesic distance between two points specified by radian latitude/longitude using the}
+\NormalTok{deg2rad <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(deg) }\KeywordTok{return}\NormalTok{(deg}\OperatorTok{*}\NormalTok{pi}\OperatorTok{/}\DecValTok{180}\NormalTok{)}
+\CommentTok{# Haversine formula (hf)}
+\NormalTok{haversine <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(long1, lat1, long2, lat2) \{}
+\NormalTok{  R <-}\StringTok{ }\DecValTok{6371} \CommentTok{# Earth mean radius [km]}
+\NormalTok{  delta.long <-}\StringTok{ }\NormalTok{(long2 }\OperatorTok{-}\StringTok{ }\NormalTok{long1)}
+\NormalTok{  delta.lat <-}\StringTok{ }\NormalTok{(lat2 }\OperatorTok{-}\StringTok{ }\NormalTok{lat1)}
+\NormalTok{  a <-}\StringTok{ }\KeywordTok{sin}\NormalTok{(delta.lat}\OperatorTok{/}\DecValTok{2}\NormalTok{)}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\KeywordTok{cos}\NormalTok{(lat1) }\OperatorTok{*}\StringTok{ }\KeywordTok{cos}\NormalTok{(lat2) }\OperatorTok{*}\StringTok{ }\KeywordTok{sin}\NormalTok{(delta.long}\OperatorTok{/}\DecValTok{2}\NormalTok{)}\OperatorTok{^}\DecValTok{2}
+\NormalTok{  c <-}\StringTok{ }\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{asin}\NormalTok{(}\KeywordTok{min}\NormalTok{(}\DecValTok{1}\NormalTok{,}\KeywordTok{sqrt}\NormalTok{(a)))}
+\NormalTok{  d =}\StringTok{ }\NormalTok{R }\OperatorTok{*}\StringTok{ }\NormalTok{c}
+  \KeywordTok{return}\NormalTok{(d) }\CommentTok{# Distance in km}
+\NormalTok{\}}
+\NormalTok{haversine <-}\StringTok{ }\KeywordTok{Vectorize}\NormalTok{(haversine, }\DataTypeTok{SIMPLIFY =}\NormalTok{ F)}
 
-#Create Functions for calculating Haversine distances
-# Calculates the geodesic distance between two points specified by radian latitude/longitude using the
-deg2rad <- function(deg) return(deg*pi/180)
-# Haversine formula (hf)
-haversine <- function(long1, lat1, long2, lat2) {
-  R <- 6371 # Earth mean radius [km]
-  delta.long <- (long2 - long1)
-  delta.lat <- (lat2 - lat1)
-  a <- sin(delta.lat/2)^2 + cos(lat1) * cos(lat2) * sin(delta.long/2)^2
-  c <- 2 * asin(min(1,sqrt(a)))
-  d = R * c
-  return(d) # Distance in km
-}
-haversine <- Vectorize(haversine, SIMPLIFY = F)
+\CommentTok{#head(binder)}
+\CommentTok{#drop(binder)}
+\CommentTok{#drop(finaldatabase)}
 
-#head(binder)
-#drop(binder)
-#drop(finaldatabase)
+\NormalTok{binder<-}\KeywordTok{as.data.frame}\NormalTok{(production_data_}\DecValTok{48}\NormalTok{[}\DecValTok{0}\NormalTok{,])}
+\CommentTok{#dim(random_recipe)}
 
-binder<-as.data.frame(production_data_48[0,])
-#dim(random_recipe)
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\DecValTok{31}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (random_recipe[}\DecValTok{1}\NormalTok{,i] }\OperatorTok{!=}\StringTok{ ""}\NormalTok{)}
+\NormalTok{      \{}
+\NormalTok{        ingredients_i<-random_recipe[}\DecValTok{1}\NormalTok{,i]}
+\NormalTok{        item<-}\StringTok{ }\KeywordTok{gsub}\NormalTok{(}\StringTok{"_"}\NormalTok{,}\StringTok{""}\NormalTok{,random_recipe[}\DecValTok{1}\NormalTok{,i])}
+\NormalTok{        binder<-}\KeywordTok{subset}\NormalTok{(production_data_}\DecValTok{48}\NormalTok{, }\KeywordTok{grepl}\NormalTok{(item,production_data_}\DecValTok{48}\OperatorTok{$}\NormalTok{productvector, }\DataTypeTok{fixed =}\NormalTok{ T))}
+\NormalTok{        binder}\OperatorTok{$}\NormalTok{wf_lon<-}\KeywordTok{as.numeric}\NormalTok{(random_wf}\OperatorTok{$}\NormalTok{lon)}
+\NormalTok{        binder}\OperatorTok{$}\NormalTok{wf_lat<-}\KeywordTok{as.numeric}\NormalTok{(random_wf}\OperatorTok{$}\NormalTok{lat)}
+\NormalTok{        binder}\OperatorTok{$}\NormalTok{distance<-}\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(}\KeywordTok{haversine}\NormalTok{(}\KeywordTok{deg2rad}\NormalTok{(binder}\OperatorTok{$}\NormalTok{wf_lon),}\KeywordTok{deg2rad}\NormalTok{(binder}\OperatorTok{$}\NormalTok{wf_lat),}\KeywordTok{deg2rad}\NormalTok{(binder}\OperatorTok{$}\NormalTok{lon),}\KeywordTok{deg2rad}\NormalTok{(binder}\OperatorTok{$}\NormalTok{lat))))}
+\NormalTok{        binder[}\KeywordTok{order}\NormalTok{(binder}\OperatorTok{$}\NormalTok{distance),]}
+\NormalTok{        binder}\OperatorTok{$}\NormalTok{ingredient<-random_recipe[}\DecValTok{1}\NormalTok{,i]}
+\NormalTok{        binder}\OperatorTok{$}\NormalTok{min_dist<-}\KeywordTok{min}\NormalTok{(binder}\OperatorTok{$}\NormalTok{distance)}
+        \ControlFlowTok{if}\NormalTok{ (i }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\NormalTok{        \{}
+\NormalTok{          finaldatabase <-}\StringTok{ }\NormalTok{binder}
+\NormalTok{        \}}
+        \ControlFlowTok{if}\NormalTok{ (i }\OperatorTok{>}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\NormalTok{        \{}
+\NormalTok{          finaldatabase <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(finaldatabase,binder)}
+\NormalTok{        \}}
+        \KeywordTok{drop}\NormalTok{(binder)}
+\NormalTok{      \}}
+\NormalTok{\}}
 
-for(i in 2:31)
-{
-  if (random_recipe[1,i] != "")
-      {
-        ingredients_i<-random_recipe[1,i]
-        item<- gsub("_","",random_recipe[1,i])
-        binder<-subset(production_data_48, grepl(item,production_data_48$productvector, fixed = T))
-        binder$wf_lon<-as.numeric(random_wf$lon)
-        binder$wf_lat<-as.numeric(random_wf$lat)
-        binder$distance<-as.numeric(unlist(haversine(deg2rad(binder$wf_lon),deg2rad(binder$wf_lat),deg2rad(binder$lon),deg2rad(binder$lat))))
-        binder[order(binder$distance),]
-        binder$ingredient<-random_recipe[1,i]
-        binder$min_dist<-min(binder$distance)
-        if (i == 2)
-        {
-          finaldatabase <- binder
-        }
-        if (i > 2)
-        {
-          finaldatabase <- rbind(finaldatabase,binder)
-        }
-        drop(binder)
-      }
-}
+\CommentTok{#dim(finaldatabase)}
+\NormalTok{mindist_finaldatabase<-}\KeywordTok{subset}\NormalTok{(finaldatabase,finaldatabase}\OperatorTok{$}\NormalTok{distance}\OperatorTok{==}\NormalTok{finaldatabase}\OperatorTok{$}\NormalTok{min_dist)}
+\CommentTok{#table(mindist_finaldatabase$ingredient,mindist_finaldatabase$lat)}
+\CommentTok{#head(random_recipe)}
+\CommentTok{#dim(mindist_finaldatabase)}
+\CommentTok{#colnames(mindist_finaldatabase)}
+\end{Highlighting}
+\end{Shaded}
 
-#dim(finaldatabase)
-mindist_finaldatabase<-subset(finaldatabase,finaldatabase$distance==finaldatabase$min_dist)
-#table(mindist_finaldatabase$ingredient,mindist_finaldatabase$lat)
-#head(random_recipe)
-#dim(mindist_finaldatabase)
-#colnames(mindist_finaldatabase)
-```
+\subsection{Problem 1: Visualize the
+Findings}\label{problem-1-visualize-the-findings}
 
-##Problem 1: Visualize the Findings
-
-```
+\begin{verbatim}
 ## [1] 6797
-```
+\end{verbatim}
 
-```
+\begin{verbatim}
 ## List of 60
 ##  $ line                 :List of 6
 ##   ..$ colour       : chr "black"
@@ -1122,17 +1269,17 @@ mindist_finaldatabase<-subset(finaldatabase,finaldatabase$distance==finaldatabas
 ##  - attr(*, "class")= chr [1:2] "theme" "gg"
 ##  - attr(*, "complete")= logi TRUE
 ##  - attr(*, "validate")= logi TRUE
-```
+\end{verbatim}
 
-![](Farm2Recipe_files/figure-html/Mapping ingredient tickets-1.png)<!-- -->
+\includegraphics{Farm2Recipe_files/figure-latex/Mapping ingredient tickets-1.pdf}
 
-```
+\begin{verbatim}
 ## Coordinate system already present. Adding new coordinate system, which will replace the existing one.
-```
+\end{verbatim}
 
-![](Farm2Recipe_files/figure-html/Mapping ingredient tickets-2.png)<!-- -->
+\includegraphics{Farm2Recipe_files/figure-latex/Mapping ingredient tickets-2.pdf}
 
-```
+\begin{verbatim}
 ##    mindist_finaldatabase$ingredient
 ## 1                         olive_oil
 ## 2                         olive_oil
@@ -1193,5 +1340,7 @@ mindist_finaldatabase<-subset(finaldatabase,finaldatabase$distance==finaldatabas
 ## 12         14.054889         1256.604
 ## 13         14.054889         1256.604
 ## 14         14.054889         1256.604
-```
+\end{verbatim}
 
+
+\end{document}
