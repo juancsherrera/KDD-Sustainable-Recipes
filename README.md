@@ -224,7 +224,7 @@ fig1fig <- fig1fig + theme_map()
 fig1fig
 ```
 
-![](Farm2Recipe_files/figure-html/mapping_producers_and_WholeFoods-1.png)<!-- -->
+![](production_data_USA.jpg)<!-- -->
 
 ```r
 ggsave("/Users/juan/Documents/GitHub/SustainableCooking-Source_Local_and_Organic/production_data_USA.eps")
