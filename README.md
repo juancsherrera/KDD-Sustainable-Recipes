@@ -310,14 +310,14 @@ mindist_finaldatabase<-subset(finaldatabase,finaldatabase$distance==finaldatabas
 ## [1] 6797
 ```
 
+![](example1.jpg)<!-- -->
 
-![](Farm2Recipe_files/figure-html/Mapping ingredient tickets-1.png)<!-- -->
+![](example1zoom.jpg)<!-- -->
 
-```
-## Coordinate system already present. Adding new coordinate system, which will replace the existing one.
-```
 
-![](Farm2Recipe_files/figure-html/Mapping ingredient tickets-2.png)<!-- -->
+![](example2.jpg)<!-- -->
+
+![](example2zoom.jpg)<!-- -->
 
 ```
 ##    mindist_finaldatabase$ingredient
