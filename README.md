@@ -172,7 +172,7 @@ recipes <- subset(recipes, region == "American")
 ```
 
 
-##2C Load Whole Foods Supermarket Locations
+## 2C Load Whole Foods Supermarket Locations
 
 ```r
 #See here for how to obtain this dataset: https://github.com/juancsherrera/wholefoods
@@ -180,7 +180,7 @@ whole_foods <- read.csv("/Users/juan/Documents/GitHub/SustainableCooking-Source_
 #head(whole_foods)
 ```
 
-##Map Producers and Whole Foods (random coordinates)
+## Map Producers and Whole Foods (random coordinates)
 
 ```r
 #Load base map
@@ -238,7 +238,7 @@ c(paste0("Organic Production in the USA.Number of Producers: ",as.character(as.m
 ```
 
 
-##Problem 1: Find recipe ingredients given a GPS coordinate and a recipe
+## Problem 1: Find recipe ingredients given a GPS coordinate and a recipe
 
 ```r
 # 1. select random recipe row from recipe dataset
@@ -304,7 +304,7 @@ mindist_finaldatabase<-subset(finaldatabase,finaldatabase$distance==finaldatabas
 #colnames(mindist_finaldatabase)
 ```
 
-##Problem 1: Visualize the Findings
+## Problem 1: Visualize the Findings
 
 ```
 ## [1] 6797
