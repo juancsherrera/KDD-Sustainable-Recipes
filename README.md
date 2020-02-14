@@ -381,4 +381,10 @@ mindist_finaldatabase<-subset(finaldatabase,finaldatabase$distance==finaldatabas
 ## 13         14.054889         1256.604
 ## 14         14.054889         1256.604
 ```
+```
+
+
+## Problem 2: Local Recipe Recommendation System
+
+```r
 
