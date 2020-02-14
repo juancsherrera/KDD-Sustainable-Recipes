@@ -1,7 +1,7 @@
 ---
 title: "Farm2Recipe, Connecting Food Recipes to Local and Organic Products. A Network Science approach."
-author: "Juan C. S. Herrera, Carolyn Dimitri"
-date: "September, 2019"
+author: "Juan C. S. Herrera"
+date: "February, 2020"
 output: 
   html_document:
     keep_md: true
