@@ -1,5 +1,6 @@
 ---
-title: "Farm2Recipe, Connecting Food Recipes to Local and Organic Products. A Network Science approach."
+title: "Sustainable Recipes. A Food Recipe Sourcing and Recommendation System to Minimize Food Miles
+"
 author: "Juan C. S. Herrera"
 date: "February, 2020"
 output: 
