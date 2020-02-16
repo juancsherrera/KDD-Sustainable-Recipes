@@ -387,6 +387,111 @@ mindist_finaldatabase<-subset(finaldatabase,finaldatabase$distance==finaldatabas
 ## Problem 2: Local Recipe Recommendation System
 
 ```
+# 1. select random recipe row from recipe dataset
+num_recipes<-as.data.frame(dim(recipes))[1,1]
 
+#In case there is no producer to supply the prduct
+
+no_producer <- data.frame(opadfinal=c("No Producer"), 
+                 ci_nopCategory=c("No Producer"), 
+                 ci_nopCatName=c("No Producer"), 
+                 ci_itemList=c("No Producer"), 
+                 lat=c(""), 
+                 lon=c(""), 
+                 productvector=c("No Producer"), 
+                 stringsAsFactors = FALSE)
+
+# 1. select random GPS coordinate. We are using a dataset of Whole Foods locations
+random_wf<- whole_foods[sample(nrow(whole_foods), 1), ]
+
+binder<-as.data.frame(production_data_48[0,])
+#dim(random_recipe)
+
+for(j in 1:num_recipes)
+{
+#select all recipes
+random_recipe <- recipes[j,]
+  for(i in 2:31) #31 == max number of ingredients
+  {
+    if (random_recipe[1,i] != "")
+        {
+          ingredients_i<-random_recipe[1,i]
+          item<- gsub("_","",random_recipe[1,i])
+          
+          if (as.matrix(dim(subset(production_data_48, grepl(item,production_data_48$productvector, fixed = T))))[1,1]>0)
+          {
+            binder<-subset(production_data_48, grepl(item,production_data_48$productvector, fixed = T))
+            binder$wf_lon<-as.numeric(random_wf$lon)
+            binder$wf_lat<-as.numeric(random_wf$lat)
+            binder$distance<-as.numeric(unlist(haversine(deg2rad(binder$wf_lon),deg2rad(binder$wf_lat),deg2rad(binder$lon),deg2rad(binder$lat))))
+            binder$ingredient<-random_recipe[1,i]
+            binder$min_dist<-min(binder$distance)
+          }
+          if (as.matrix(dim(subset(production_data_48, grepl(item,production_data_48$productvector, fixed = T))))[1,1]==0)
+          {
+            binder<-no_producer
+            binder$wf_lon<-0
+            binder$wf_lat<-0
+            binder$distance<99999
+            binder$ingredient<-random_recipe[1,i]
+            binder$min_dist<-min(binder$distance)
+          }
+          
+          if (i == 2)
+          {
+            finaldatabase <- binder
+          }
+          if (i > 2)
+          {
+            finaldatabase <- rbind(finaldatabase,binder)
+          }
+          drop(binder)
+          mindist_finaldatabase<-subset(finaldatabase,finaldatabase$distance==finaldatabase$min_dist)    
+        }
+  if (j == 1)
+  {
+    ticket_ingredients<-as.data.frame(mindist_finaldatabase$ingredient)
+    ticket_ingredients$supplier<-mindist_finaldatabase$opadfinal
+    ticket_ingredients$product_offered_by_supplier<-paste(mindist_finaldatabase$ci_nopCategory," ",mindist_finaldatabase$ci_nopCatName," ",mindist_finaldatabase$ci_itemList)
+    ticket_ingredients$distance_in_miles<-(mindist_finaldatabase$distance/1.6)
+    
+    ticket_ingredients$total_food_miles<-(sum(unique(mindist_finaldatabase$distance))/1.6)
+    
+    ticket_ingredients$recipe_number<-j
+    
+    all_tickets<-ticket_ingredients
+    drop(ticket_ingredients)
+    drop(finaldatabase)
+  }
+  if (j > 1)
+  {
+    ticket_ingredients<-as.data.frame(mindist_finaldatabase$ingredient)
+    ticket_ingredients$supplier<-mindist_finaldatabase$opadfinal
+    ticket_ingredients$product_offered_by_supplier<-paste(mindist_finaldatabase$ci_nopCategory," ",mindist_finaldatabase$ci_nopCatName," ",mindist_finaldatabase$ci_itemList)
+    
+    ticket_ingredients$distance_in_miles<-(mindist_finaldatabase$distance/1.6)
+    ticket_ingredients$total_food_miles<-(sum(unique(mindist_finaldatabase$distance))/1.6)
+    
+    ticket_ingredients$recipe_number<-j
+    
+    #!!!! Only keep the shortest distance recipe, else do not keep
+    if (all_tickets$total_food_miles[1] > ticket_ingredients$total_food_miles[1])
+      {
+        all_tickets <- ticket_ingredients
+       }
+    
+    drop(ticket_ingredients)
+    drop(finaldatabase)
+    drop(mindist_finaldatabase)
+  }
+#dim(finaldatabase)
+if ((j/100)%%1==0)
+    {print(j)}
+
+drop(random_recipe)
+  }
+}
+
+beep()
 ```r
 
