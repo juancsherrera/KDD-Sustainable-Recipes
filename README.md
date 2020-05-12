@@ -1,12 +1,5 @@
 ---
-title: "Sustainable Recipes. A Food Recipe Sourcing and Recommendation System to Minimize Food Miles
-"
-author: "Juan C. S. Herrera"
-date: "February, 2020"
-output: 
-  html_document:
-    keep_md: true
-    self_contained: true
+title: "Sustainable Recipes. A Food Recipe Sourcing and Recommendation System to Minimize Food Miles"
 ---
 
 <div style="text-align: right">
