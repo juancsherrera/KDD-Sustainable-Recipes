@@ -9,7 +9,7 @@
 
 ## 2. Given a location that wants to produce a recipe I have built a recipe recommendation system that recommends recipes that minimize food miles,
 
-## A full pre-print containing the rationale, a literature review, and the algorithms refer to: https://arxiv.org/abs/2004.07454
+## For a full pre-print containing the rationale, a literature review, and the algorithms refer to: https://arxiv.org/abs/2004.07454
 
 </div>
 
