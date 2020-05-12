@@ -1,6 +1,5 @@
----
-title: "Sustainable Recipes. A Food Recipe Sourcing and Recommendation System to Minimize Food Miles"
----
+### Sustainable Recipes. A Food Recipe Sourcing and Recommendation System to Minimize Food Miles
+
 
 <div style="text-align: right">
 
